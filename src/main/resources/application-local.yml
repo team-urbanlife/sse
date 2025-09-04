@@ -1,0 +1,12 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  application:
+    name: wegotoo_sse
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

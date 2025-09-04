@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active:
+      - local-env
+    group:
+      local-env:
+        - local
+      dev-env:
+        - dev
+      prod-env:
+        - prod
+
+server:
+  port: 8085
