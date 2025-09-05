@@ -1,6 +1,6 @@
 package com.wegotoo.sse.application.sse;
 
-import com.wegotoo.sse.application.sse.request.NotificationMessage;
+import com.wegotoo.sse.event.notification.request.NotificationMessage;
 import com.wegotoo.sse.domain.sse.SseEmitterRepository;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
