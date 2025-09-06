@@ -11,6 +11,7 @@ spring:
         - prod
     include:
       - jwt
+      - slack
 
 server:
   port: 8085

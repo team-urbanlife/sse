@@ -1,4 +1,4 @@
-package com.wegotoo.sse.application.sse.request;
+package com.wegotoo.sse.event.notification.request;
 
 import lombok.AccessLevel;
 import lombok.Builder;
