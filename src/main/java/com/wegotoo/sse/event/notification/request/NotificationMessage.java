@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class NotificationMessage {
 
+    private Long id;
     private Long fromId;
     private Long toId;
     private String fromName;
@@ -17,7 +18,9 @@ public class NotificationMessage {
     private String message;
 
     @Builder
-    private NotificationMessage(Long fromId, Long toId, String fromName, String toName, String event, String message) {
+    private NotificationMessage(Long id, Long fromId, Long toId, String fromName, String toName, String event,
+                                String message) {
+        this.id = id;
         this.fromId = fromId;
         this.toId = toId;
         this.fromName = fromName;
