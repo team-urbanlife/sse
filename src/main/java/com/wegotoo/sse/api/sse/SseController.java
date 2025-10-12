@@ -4,7 +4,10 @@ import com.wegotoo.sse.application.sse.SseService;
 import com.wegotoo.sse.event.notification.request.NotificationMessage;
 import com.wegotoo.sse.infra.resolvers.Auth;
 import java.util.Random;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class SseController {
 
     private final SseService sseService;
@@ -27,23 +31,6 @@ public class SseController {
     @GetMapping(value = "/v1/sse/{userId}", produces = "text/event-stream")
     public SseEmitter connectionCopy(@PathVariable Long userId) {
         return sseService.connect(userId);
-    }
-
-    @PostMapping(value = "/v1/send/{userId}")
-    public void sendMessage(@PathVariable Long userId) {
-        Random random = new Random();
-        long randomNumber = random.nextInt(98) + 2;
-
-        NotificationMessage message = NotificationMessage.builder()
-                .fromId(randomNumber)
-                .fromName("USER_" + randomNumber)
-                .toId(userId)
-                .toName("USER_" + userId)
-                .event("COMMENT")
-                .message("USER_" + randomNumber + "님이 댓글을 남겼습니다.")
-                .build();
-
-        rabbitTemplate.convertAndSend("app.sse", "sse", message);
     }
 
 }
